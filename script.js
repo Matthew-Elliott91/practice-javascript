@@ -20,6 +20,16 @@ const restaurant = {
     );
   },
 
+  orderPasta: function (ing1, ing2, ing3) {
+    console.log(
+      `Here is your delicious pasta with ${ing1}, ${ing2} and ${ing3}`
+    );
+  },
+
+  orderPizza: function (mainIngrediant, ...otherIngrediants) {
+    return [mainIngrediant, otherIngrediants];
+  },
+
   openingHours: {
     thu: {
       open: 12,
@@ -125,4 +135,99 @@ const obj = { a: 23, b: 7, c: 14 };
 const {
   fri: { open, close },
 } = hours;
-console.log(open, close);
+
+// The spread operator
+
+// We use the spread operator whenever otherwise we would write multiple values seprated by commas
+
+const arr = [3, 4, 5];
+
+const badNewArray = [1, 2, arr[0], arr[1], arr[2]];
+
+const goodNewArray = [1, 2, ...arr];
+
+const newMenu = [...restaurant.mainMenu, 'Gnocci'];
+
+// Copying Arrays
+
+const mainMenuCopy = [...restaurant.mainMenu];
+
+// Joining Arrays
+
+const joinedMenu = [...restaurant.starterMenu, restaurant.mainMenu];
+
+// Iterables: arrays, strings, maps, sets. Not OBJECTS!!
+
+const str = 'Matthew';
+
+const letters = [...str, ' ', 's.'];
+
+// const ingrediants = [
+//   prompt(`Lets make pasta! Ingrediant 1?`),
+//   prompt(`Ingrediant 2?`),
+//   prompt(`Ingrediant 3?`),
+// ];
+
+// Objects using spred operator
+
+const newRestaurant = { foundedIn: 1998, ...restaurant, founder: 'Guiseppe' };
+
+const restaurantCopy = { ...restaurant };
+
+restaurantCopy.name = 'Ristorante Roma';
+
+// Rest Pattern
+
+// Its called Rest because it takes the rest of the elements that are unused in the destructuring. Remember, Rest takes seperate values and pouts them in an array
+const [e, f, ...otherFood] = [1, 2, 3, 4, 5];
+
+// Rest pattern must always be the last element because its the REST!
+const [pizza, , Risotto, ...fullMenu] = [
+  ...restaurant.mainMenu,
+  ...restaurant.starterMenu,
+];
+
+// Rest in Objects
+
+const { sat, ...weekDays } = restaurant.openingHours;
+
+// Rest in functions
+
+const add = function (...numbers) {
+  let sum = 0;
+  for (let i = 0; i < numbers.length; i++) sum += numbers[i];
+};
+
+add(2, 3);
+add(5, 3, 7, 2);
+add(8, 2, 5, 3, 2, 1, 4);
+
+const x = [23, 5, 7];
+
+add(...x);
+
+restaurant.orderPizza('Chicken', 'Onion', 'Mushroom', 'Spinach');
+restaurant.orderPizza('Chicken');
+
+// Logical operators can use any data type, return any data type they also do short-circuiting
+
+// Or operator returns first truthy value
+
+// console.log('' || 'Matthew'); // Matthew
+// console.log(true || 0); // true
+// console.log(undefined || null); // null
+restaurant.numGuests = 23;
+
+const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
+
+const guests2 = restaurant.numGuests || 10;
+
+// AND operator returns first falsy value or the last value
+// console.log(7 && 'Matthew');
+
+if (restaurant.pizza) {
+  restaurant.orderPizza('mushrooms', 'spinach');
+}
+
+// Above and below are the same
+restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach');
