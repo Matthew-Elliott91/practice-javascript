@@ -1,4 +1,5 @@
 'use strict';
+console.log('Hello');
 const weekDays = ['mon', 'tue', 'wed', 'thur', 'fri', 'sat', 'sun'];
 const openingHours = {
   [weekDays[3]]: {
