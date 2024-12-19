@@ -1,4 +1,19 @@
 'use strict';
+const weekDays = ['mon', 'tue', 'wed', 'thur', 'fri', 'sat', 'sun'];
+const openingHours = {
+  [weekDays[3]]: {
+    open: 12,
+    close: 22,
+  },
+  [weekDays[4]]: {
+    open: 11,
+    close: 23,
+  },
+  sat: {
+    open: 0, // Open 24 hours
+    close: 24,
+  },
+};
 
 // Data needed for a later exercise
 const flights =
@@ -11,38 +26,24 @@ const restaurant = {
   categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
-  order: function (starterIndex, mainIndex) {
+  openingHours,
+  order(starterIndex, mainIndex) {
     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
   },
-  orderDelivery: function ({ starterIndex, mainIndex, time, address }) {
+  orderDelivery({ starterIndex, mainIndex, time, address }) {
     console.log(
       `Order received ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
     );
   },
 
-  orderPasta: function (ing1, ing2, ing3) {
+  orderPasta(ing1, ing2, ing3) {
     console.log(
       `Here is your delicious pasta with ${ing1}, ${ing2} and ${ing3}`
     );
   },
 
-  orderPizza: function (mainIngrediant, ...otherIngrediants) {
+  orderPizza(mainIngrediant, ...otherIngrediants) {
     return [mainIngrediant, otherIngrediants];
-  },
-
-  openingHours: {
-    thu: {
-      open: 12,
-      close: 22,
-    },
-    fri: {
-      open: 11,
-      close: 23,
-    },
-    sat: {
-      open: 0, // Open 24 hours
-      close: 24,
-    },
   },
 };
 
@@ -189,7 +190,7 @@ const [pizza, , Risotto, ...fullMenu] = [
 
 // Rest in Objects
 
-const { sat, ...weekDays } = restaurant.openingHours;
+// const { sat, ...weekDays } = restaurant.openingHours;
 
 // Rest in functions
 
@@ -264,5 +265,15 @@ rest2.numGuests ??= 10;
 
 rest2.owner &&= '<Anonymous>';
 
-console.log(rest1);
-console.log(rest2);
+// Looping Arrays: The for of Loop
+
+const loopMenu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+
+for (const item of loopMenu) console.log(item);
+
+// Entries methoud goes inside the parenthisis of the for of loop
+for (const [i, el] of loopMenu.entries()) {
+  // console.log(`${i + 1}: ${el}`);
+}
+
+//Enhanced object literals
