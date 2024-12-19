@@ -216,11 +216,11 @@ restaurant.orderPizza('Chicken');
 // console.log('' || 'Matthew'); // Matthew
 // console.log(true || 0); // true
 // console.log(undefined || null); // null
-restaurant.numGuests = 23;
+// restaurant.numGuests = 23;
 
-const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
+// const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
 
-const guests2 = restaurant.numGuests || 10;
+// const guests2 = restaurant.numGuests || 10;
 
 // AND operator returns first falsy value or the last value
 // console.log(7 && 'Matthew');
@@ -231,3 +231,38 @@ if (restaurant.pizza) {
 
 // Above and below are the same
 restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach');
+
+// Nulish Coalescing operator
+
+// Nulish values are null and undefined, (NOT 0 or empty strings)
+
+restaurant.numGuests = 0;
+const guests = restaurant.numGuests || 10;
+
+const guestsCorrect = restaurant.numGuests ?? 10;
+
+// Logical Asignment Operators
+
+const rest1 = {
+  name: 'Capri',
+  numGuests: '20',
+};
+
+const rest2 = {
+  name: 'La Piazza',
+  owner: 'Giovanni Rossi',
+};
+// Remember: the or operator returns the first truthy value
+// rest1.numGuests = rest1.numGuests || 10;
+// rest2.numGuests = rest2.numGuests || 10;
+
+// rest1.numGuests ||= 10;
+// rest2.numGuests ||= 10;
+
+rest1.numGuests ??= 10;
+rest2.numGuests ??= 10;
+
+rest2.owner &&= '<Anonymous>';
+
+console.log(rest1);
+console.log(rest2);
